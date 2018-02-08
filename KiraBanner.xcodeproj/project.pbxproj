@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		120F6878202825F2002ECE68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F6877202825F2002ECE68 /* AppDelegate.m */; };
+		120F687B202825F2002ECE68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F687A202825F2002ECE68 /* ViewController.m */; };
+		120F687E202825F2002ECE68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120F687C202825F2002ECE68 /* Main.storyboard */; };
+		120F6880202825F2002ECE68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120F687F202825F2002ECE68 /* Assets.xcassets */; };
+		120F6883202825F2002ECE68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120F6881202825F2002ECE68 /* LaunchScreen.storyboard */; };
+		120F6886202825F2002ECE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F6885202825F2002ECE68 /* main.m */; };
+		120F6890202825F2002ECE68 /* KiraBannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F688F202825F2002ECE68 /* KiraBannerTests.m */; };
+		120F689B202825F2002ECE68 /* KiraBannerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F689A202825F2002ECE68 /* KiraBannerUITests.m */; };
+		120F68AA20282A87002ECE68 /* MBCBannerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68A920282A87002ECE68 /* MBCBannerNode.m */; };
+		120F68AD20282EE1002ECE68 /* MBCBannerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68AC20282EE1002ECE68 /* MBCBannerList.m */; };
+		120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68AF2028601D002ECE68 /* MBCKiraBanner.m */; };
+		120F68CC202C20AF002ECE68 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C8202C20AE002ECE68 /* 1.jpg */; };
+		120F68CD202C20AF002ECE68 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C9202C20AE002ECE68 /* 3.jpg */; };
+		120F68CE202C20AF002ECE68 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68CA202C20AE002ECE68 /* 4.jpg */; };
+		120F68CF202C20AF002ECE68 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68CB202C20AF002ECE68 /* 2.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		120F688C202825F2002ECE68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120F686B202825F2002ECE68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120F6872202825F2002ECE68;
+			remoteInfo = KiraBanner;
+		};
+		120F6897202825F2002ECE68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120F686B202825F2002ECE68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120F6872202825F2002ECE68;
+			remoteInfo = KiraBanner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		120F6873202825F2002ECE68 /* KiraBanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiraBanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		120F6876202825F2002ECE68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		120F6877202825F2002ECE68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		120F6879202825F2002ECE68 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		120F687A202825F2002ECE68 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		120F687D202825F2002ECE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		120F687F202825F2002ECE68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		120F6882202825F2002ECE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		120F6884202825F2002ECE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120F6885202825F2002ECE68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		120F688B202825F2002ECE68 /* KiraBannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraBannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		120F688F202825F2002ECE68 /* KiraBannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KiraBannerTests.m; sourceTree = "<group>"; };
+		120F6891202825F2002ECE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120F6896202825F2002ECE68 /* KiraBannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraBannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		120F689A202825F2002ECE68 /* KiraBannerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KiraBannerUITests.m; sourceTree = "<group>"; };
+		120F689C202825F2002ECE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120F68A820282A86002ECE68 /* MBCBannerNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCBannerNode.h; sourceTree = "<group>"; };
+		120F68A920282A87002ECE68 /* MBCBannerNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCBannerNode.m; sourceTree = "<group>"; };
+		120F68AB20282EE1002ECE68 /* MBCBannerList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCBannerList.h; sourceTree = "<group>"; };
+		120F68AC20282EE1002ECE68 /* MBCBannerList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCBannerList.m; sourceTree = "<group>"; };
+		120F68AE2028601D002ECE68 /* MBCKiraBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCKiraBanner.h; sourceTree = "<group>"; };
+		120F68AF2028601D002ECE68 /* MBCKiraBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCKiraBanner.m; sourceTree = "<group>"; };
+		120F68C8202C20AE002ECE68 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		120F68C9202C20AE002ECE68 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		120F68CA202C20AE002ECE68 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		120F68CB202C20AF002ECE68 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		120F6870202825F2002ECE68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6888202825F2002ECE68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6893202825F2002ECE68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		120F686A202825F2002ECE68 = {
+			isa = PBXGroup;
+			children = (
+				120F6875202825F2002ECE68 /* KiraBanner */,
+				120F688E202825F2002ECE68 /* KiraBannerTests */,
+				120F6899202825F2002ECE68 /* KiraBannerUITests */,
+				120F6874202825F2002ECE68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		120F6874202825F2002ECE68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120F6873202825F2002ECE68 /* KiraBanner.app */,
+				120F688B202825F2002ECE68 /* KiraBannerTests.xctest */,
+				120F6896202825F2002ECE68 /* KiraBannerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		120F6875202825F2002ECE68 /* KiraBanner */ = {
+			isa = PBXGroup;
+			children = (
+				120F68C8202C20AE002ECE68 /* 1.jpg */,
+				120F68CB202C20AF002ECE68 /* 2.jpg */,
+				120F68C9202C20AE002ECE68 /* 3.jpg */,
+				120F68CA202C20AE002ECE68 /* 4.jpg */,
+				120F6876202825F2002ECE68 /* AppDelegate.h */,
+				120F6877202825F2002ECE68 /* AppDelegate.m */,
+				120F6879202825F2002ECE68 /* ViewController.h */,
+				120F687A202825F2002ECE68 /* ViewController.m */,
+				120F68AE2028601D002ECE68 /* MBCKiraBanner.h */,
+				120F68AF2028601D002ECE68 /* MBCKiraBanner.m */,
+				120F687C202825F2002ECE68 /* Main.storyboard */,
+				120F687F202825F2002ECE68 /* Assets.xcassets */,
+				120F6881202825F2002ECE68 /* LaunchScreen.storyboard */,
+				120F6884202825F2002ECE68 /* Info.plist */,
+				120F6885202825F2002ECE68 /* main.m */,
+				120F68AB20282EE1002ECE68 /* MBCBannerList.h */,
+				120F68AC20282EE1002ECE68 /* MBCBannerList.m */,
+				120F68A820282A86002ECE68 /* MBCBannerNode.h */,
+				120F68A920282A87002ECE68 /* MBCBannerNode.m */,
+			);
+			path = KiraBanner;
+			sourceTree = "<group>";
+		};
+		120F688E202825F2002ECE68 /* KiraBannerTests */ = {
+			isa = PBXGroup;
+			children = (
+				120F688F202825F2002ECE68 /* KiraBannerTests.m */,
+				120F6891202825F2002ECE68 /* Info.plist */,
+			);
+			path = KiraBannerTests;
+			sourceTree = "<group>";
+		};
+		120F6899202825F2002ECE68 /* KiraBannerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				120F689A202825F2002ECE68 /* KiraBannerUITests.m */,
+				120F689C202825F2002ECE68 /* Info.plist */,
+			);
+			path = KiraBannerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		120F6872202825F2002ECE68 /* KiraBanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F689F202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBanner" */;
+			buildPhases = (
+				120F686F202825F2002ECE68 /* Sources */,
+				120F6870202825F2002ECE68 /* Frameworks */,
+				120F6871202825F2002ECE68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiraBanner;
+			productName = KiraBanner;
+			productReference = 120F6873202825F2002ECE68 /* KiraBanner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		120F688A202825F2002ECE68 /* KiraBannerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F68A2202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBannerTests" */;
+			buildPhases = (
+				120F6887202825F2002ECE68 /* Sources */,
+				120F6888202825F2002ECE68 /* Frameworks */,
+				120F6889202825F2002ECE68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120F688D202825F2002ECE68 /* PBXTargetDependency */,
+			);
+			name = KiraBannerTests;
+			productName = KiraBannerTests;
+			productReference = 120F688B202825F2002ECE68 /* KiraBannerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		120F6895202825F2002ECE68 /* KiraBannerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F68A5202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBannerUITests" */;
+			buildPhases = (
+				120F6892202825F2002ECE68 /* Sources */,
+				120F6893202825F2002ECE68 /* Frameworks */,
+				120F6894202825F2002ECE68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120F6898202825F2002ECE68 /* PBXTargetDependency */,
+			);
+			name = KiraBannerUITests;
+			productName = KiraBannerUITests;
+			productReference = 120F6896202825F2002ECE68 /* KiraBannerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		120F686B202825F2002ECE68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "zj－db0737";
+				TargetAttributes = {
+					120F6872202825F2002ECE68 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					120F688A202825F2002ECE68 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 120F6872202825F2002ECE68;
+					};
+					120F6895202825F2002ECE68 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 120F6872202825F2002ECE68;
+					};
+				};
+			};
+			buildConfigurationList = 120F686E202825F2002ECE68 /* Build configuration list for PBXProject "KiraBanner" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 120F686A202825F2002ECE68;
+			productRefGroup = 120F6874202825F2002ECE68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				120F6872202825F2002ECE68 /* KiraBanner */,
+				120F688A202825F2002ECE68 /* KiraBannerTests */,
+				120F6895202825F2002ECE68 /* KiraBannerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		120F6871202825F2002ECE68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120F68CE202C20AF002ECE68 /* 4.jpg in Resources */,
+				120F68CD202C20AF002ECE68 /* 3.jpg in Resources */,
+				120F68CF202C20AF002ECE68 /* 2.jpg in Resources */,
+				120F6883202825F2002ECE68 /* LaunchScreen.storyboard in Resources */,
+				120F68CC202C20AF002ECE68 /* 1.jpg in Resources */,
+				120F6880202825F2002ECE68 /* Assets.xcassets in Resources */,
+				120F687E202825F2002ECE68 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6889202825F2002ECE68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6894202825F2002ECE68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		120F686F202825F2002ECE68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120F68AA20282A87002ECE68 /* MBCBannerNode.m in Sources */,
+				120F687B202825F2002ECE68 /* ViewController.m in Sources */,
+				120F6886202825F2002ECE68 /* main.m in Sources */,
+				120F6878202825F2002ECE68 /* AppDelegate.m in Sources */,
+				120F68AD20282EE1002ECE68 /* MBCBannerList.m in Sources */,
+				120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6887202825F2002ECE68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120F6890202825F2002ECE68 /* KiraBannerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F6892202825F2002ECE68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120F689B202825F2002ECE68 /* KiraBannerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		120F688D202825F2002ECE68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120F6872202825F2002ECE68 /* KiraBanner */;
+			targetProxy = 120F688C202825F2002ECE68 /* PBXContainerItemProxy */;
+		};
+		120F6898202825F2002ECE68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120F6872202825F2002ECE68 /* KiraBanner */;
+			targetProxy = 120F6897202825F2002ECE68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		120F687C202825F2002ECE68 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				120F687D202825F2002ECE68 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		120F6881202825F2002ECE68 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				120F6882202825F2002ECE68 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		120F689D202825F2002ECE68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		120F689E202825F2002ECE68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		120F68A0202825F2002ECE68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		120F68A1202825F2002ECE68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		120F68A3202825F2002ECE68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBannerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KiraBanner.app/KiraBanner";
+			};
+			name = Debug;
+		};
+		120F68A4202825F2002ECE68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBannerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KiraBanner.app/KiraBanner";
+			};
+			name = Release;
+		};
+		120F68A6202825F2002ECE68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBannerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBannerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KiraBanner;
+			};
+			name = Debug;
+		};
+		120F68A7202825F2002ECE68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZA747HXW4Q;
+				INFOPLIST_FILE = KiraBannerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sqm.meitu.KiraBannerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KiraBanner;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		120F686E202825F2002ECE68 /* Build configuration list for PBXProject "KiraBanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F689D202825F2002ECE68 /* Debug */,
+				120F689E202825F2002ECE68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F689F202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F68A0202825F2002ECE68 /* Debug */,
+				120F68A1202825F2002ECE68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F68A2202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBannerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F68A3202825F2002ECE68 /* Debug */,
+				120F68A4202825F2002ECE68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F68A5202825F2002ECE68 /* Build configuration list for PBXNativeTarget "KiraBannerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F68A6202825F2002ECE68 /* Debug */,
+				120F68A7202825F2002ECE68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 120F686B202825F2002ECE68 /* Project object */;
+}
