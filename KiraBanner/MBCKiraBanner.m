@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableSet *reuseCells;
-@property (nonatomic, strong) NSMutableArray * cells;
+
 /**
  *  计时器用到的页数
  */
@@ -61,7 +61,6 @@
     _autoTime = 5.0;
     self.visibleRange = NSMakeRange(0, 0);
     self.reuseCells = [[NSMutableSet alloc] init];
-    self.cells = [[NSMutableArray alloc] initWithCapacity:0];
     
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;
@@ -78,8 +77,6 @@
 - (void)dealloc {
     [self.reuseCells removeAllObjects];
     self.reuseCells = nil;
-    [self.cells removeAllObjects];
-    self.cells = nil;
 }
 
 #pragma mark UI methods
