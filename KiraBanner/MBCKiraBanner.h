@@ -41,13 +41,6 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  */
 @property (nonatomic, assign) CGFloat minimumPageAlpha;
 
-
-
-/**
- *  是否开启自动滚动,默认为开启
- */
-@property (nonatomic, assign) BOOL isOpenAutoScroll;
-
 /**
  *  是否开启无限轮播,默认为关闭
  */
@@ -68,6 +61,12 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  *  指示器
  */
 @property (nonatomic,retain)  UIPageControl *pageControl;
+
+
+/**
+ *  是否开启自动滚动,默认为开启
+ */
+@property (nonatomic, assign) BOOL isAutoScroll;
 
 /**
  *  定时器

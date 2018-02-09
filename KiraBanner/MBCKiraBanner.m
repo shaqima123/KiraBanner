@@ -12,7 +12,6 @@
 @interface MBCKiraBanner () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-
 @property (nonatomic, strong) NSMutableSet *reuseCells;
 @property (nonatomic, strong) NSMutableArray * cells;
 /**
@@ -55,7 +54,7 @@
 - (void)commonInit {
     self.clipsToBounds = YES;
     self.pageCount = 0;
-    self.isOpenAutoScroll = YES;
+    self.isAutoScroll = YES;
     self.contentEdge = UIEdgeInsetsMake(30, 20, 30, 20);
     _currentIndex = 0;
     _minimumPageAlpha = 1.0;
@@ -311,7 +310,11 @@
 #pragma mark private methods
 
 - (void)startTimer {
-    
+    if (self.numberOfItems > 1 && self.isAutoScroll && self.isCircle) {
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoTime target:self selector:@selector(autoPlay) userInfo:nil repeats:YES];
+        self.timer = timer;
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    }
 }
 
 - (void)stopTimer {
@@ -320,7 +323,7 @@
 }
 
 - (void)adjustCenterSubview {
-    if (self.isOpenAutoScroll && self.numberOfItems > 0) {
+    if (self.isAutoScroll && self.numberOfItems > 0) {
         [_scrollView setContentOffset:CGPointMake(_pageSize.width * self.page, 0) animated:NO];
     }
 }
@@ -338,7 +341,19 @@
 
 #pragma mark auto play
 - (void)autoPlay {
-    
+    self.page ++;
+    switch (self.bannerType) {
+        case MBCKiraBannerTypeHorizontal: {
+            [_scrollView setContentOffset:CGPointMake(self.page * _pageSize.width, 0) animated:YES];
+        }
+            break;
+        case MBCKiraBannerTypeVertical: {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark get-set
@@ -426,7 +441,7 @@
                     if (scrollView.contentOffset.x / _pageSize.width <= self.numberOfItems - 1) {
                         [scrollView setContentOffset:CGPointMake((2 * self.numberOfItems - 1) * _pageSize.width, 0) animated:NO];
                         
-                        self.page = 2 * self.numberOfItems;
+                        self.page = 2 * self.numberOfItems - 1;
                     }
                 }
                     break;
@@ -453,7 +468,7 @@
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    if (self.numberOfItems > 1 && self.isOpenAutoScroll && self.isCircle) {
+    if (self.numberOfItems > 1 && self.isAutoScroll && self.isCircle) {
         switch (self.bannerType) {
             case MBCKiraBannerTypeHorizontal:
             {
@@ -477,4 +492,13 @@
         }
     }
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self stopTimer];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self startTimer];
+}
+
 @end
