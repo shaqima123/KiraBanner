@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MBCBannerList.h"
 #import "MBCKiraBanner.h"
+#define Width [UIScreen mainScreen].bounds.size.width
 
 @interface ViewController () <MBCKiraBannerDataSource, MBCKiraBannerDelegate>
 
@@ -21,23 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArray = @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg"];
-    self.banner = [[MBCKiraBanner alloc] initWithFrame:CGRectMake(50, 100, 250, 200)];
+    self.dataArray = @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg"];
+    self.banner = [[MBCKiraBanner alloc] initWithFrame:CGRectMake(0, 72, Width, Width * 9 / 16)];
     [self.view addSubview:self.banner];
     self.banner.backgroundColor = [UIColor yellowColor];
-    self.banner.scrollViewEdge = UIEdgeInsetsMake(10, 10, 10, 10);
-    self.banner.pageControlEdge = UIEdgeInsetsMake(150, 50, 10, 50);
-//    self.banner.dataArray = self.dataArray;
-    
-    self.banner.itemSpace = 10;
-    self.banner.itemWidth = 200;
-    self.banner.contentEdge = UIEdgeInsetsMake(20, 0, 20, 0);
+    self.banner.isCircle = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
     [self.banner regiseterClassForCells:[UIImageView class]];
+    self.banner.bannerType = MBCKiraBannerTypeHorizontal;
     self.banner.dataSource = self;
     self.banner.delegate = self;
-    self.banner.isCircle = YES;
+    [self.banner reloadData];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -58,12 +53,9 @@
     return cell;
 }
 
-//- (UIView *)kiraBanner:(MBCKiraBanner *)banner viewForNode:(MBCBannerNode *)node {
-//    UIImageView *cell = (UIImageView *)[self.banner dequeueReusableCell];
-//    NSString * data = (NSString *)node.data;
-//    cell.image = [UIImage imageNamed:data];
-//    return cell;
-//}
+- (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner {
+    return CGSizeMake(Width - 60, (Width - 60) * 9 / 16);
+}
 
 - (NSInteger)numberOfItemsInKiraBanner:(MBCKiraBanner *)banner {
     return self.dataArray.count;

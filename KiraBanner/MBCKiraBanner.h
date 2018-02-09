@@ -11,7 +11,8 @@
 
 typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 {
-    MBCKiraBannerTypeLinear = 0,
+    MBCKiraBannerTypeHorizontal = 0,
+    MBCKiraBannerTypeVertical
 };
 
 @protocol MBCKiraBannerDataSource,MBCKiraBannerDelegate;
@@ -19,25 +20,43 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 
 //数据源相关
 @property (nonatomic, assign) MBCKiraBannerType bannerType;
+
+/**
+ *  当前是第几页
+ */
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
-
-//2
-@property (nonatomic, strong) NSArray * _Nonnull dataArray;
-
-@property (nonatomic, assign, readonly) NSInteger numberOfItems;
 @property (nonatomic, strong) Class cellClass;
 
-//设置边距
-@property (nonatomic, assign) UIEdgeInsets scrollViewEdge;
-@property (nonatomic, assign) UIEdgeInsets pageControlEdge;
+@property (nonatomic, assign) BOOL needsReload;
 
-//设置scrollView内部属性
+/**
+ *  总页数
+ */
+@property (nonatomic, assign, readonly) NSInteger numberOfItems;
+
+@property (nonatomic, assign) NSRange visibleRange;
+
+/**
+ *  非当前页的透明比例
+ */
+@property (nonatomic, assign) CGFloat minimumPageAlpha;
+
+
+
+/**
+ *  是否开启自动滚动,默认为开启
+ */
+@property (nonatomic, assign) BOOL isOpenAutoScroll;
+
+/**
+ *  是否开启无限轮播,默认为关闭
+ */
 @property (nonatomic, assign) BOOL isCircle;
 
-@property (nonatomic, assign) CGFloat itemWidth;
-//itemHeight通过scrollview的height减去contentTop和bottom得到
-
-@property (nonatomic, assign) CGFloat itemSpace;
+//@property (nonatomic, assign) CGFloat itemWidth;
+////itemHeight通过scrollview的height减去contentTop和bottom得到
+//
+//@property (nonatomic, assign) CGFloat itemSpace;
 @property (nonatomic, assign) UIEdgeInsets contentEdge;
 
 
@@ -45,9 +64,32 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 @property (nonatomic,weak) id<MBCKiraBannerDataSource> dataSource;
 @property (nonatomic,weak) id<MBCKiraBannerDelegate> delegate;
 
+/**
+ *  指示器
+ */
+@property (nonatomic,retain)  UIPageControl *pageControl;
+
+/**
+ *  定时器
+ */
+@property (nonatomic, weak) NSTimer *timer;
+
+/**
+ *  自动切换视图的时间,默认是5.0
+ */
+@property (nonatomic, assign) CGFloat autoTime;
+
 //Cell
 - (void)regiseterClassForCells: (Class) cellClass;
 - (UIView *)dequeueReusableCell;
+- (void)reloadData;
+- (void)scrollToPage:(NSUInteger)pageNumber;
+
+/**
+ *  关闭定时器,关闭自动滚动
+ */
+- (void)stopTimer;
+- (void)adjustCenterSubview;
 
 @end
 
@@ -57,13 +99,12 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 - (UIView *)kiraBanner: (MBCKiraBanner *)banner viewForItemAtIndex:(NSInteger)index;
 
 @optional
-//2
-//- (UIView *)kiraBanner: (MBCKiraBanner *)banner viewForNode: (MBCBannerNode *)node;
 
 @end
 
 @protocol MBCKiraBannerDelegate <UIScrollViewDelegate>
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+- (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner;
+- (void)didScrollToIndex:(NSInteger)index inKiraBanner:(MBCKiraBanner *)banner;
 
 @end
