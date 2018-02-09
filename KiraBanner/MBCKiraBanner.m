@@ -99,7 +99,9 @@
             if (_pageCount == 0) {
                 return;
             }
-            //TODO:设置pagecontrol的number
+            if (self.pageControl && [self.pageControl respondsToSelector:@selector(setNumberOfPages:)]) {
+                [self.pageControl setNumberOfPages:self.numberOfItems];
+            }
         }
         //重置page的宽度
         CGFloat width = _scrollView.bounds.size.width - 2 * self.contentEdge.left - 2 * self.contentEdge.right;
@@ -198,9 +200,11 @@
             default:
                 break;
         }
-        //将cellforindex方法的地址作为objc_setAssociatedObject的key，保证唯一性
-        objc_setAssociatedObject(cell, @selector(cellForIndex:),[NSNumber numberWithInteger:index], OBJC_ASSOCIATION_COPY);
-        [self.scrollView insertSubview:cell atIndex:0];
+        if (cell) {
+            //将cellforindex方法的地址作为objc_setAssociatedObject的key，保证唯一性
+            objc_setAssociatedObject(cell, @selector(cellForIndex:),[NSNumber numberWithInteger:index], OBJC_ASSOCIATION_COPY);
+            [self.scrollView insertSubview:cell atIndex:0];
+        }
     }
 }
 
@@ -215,10 +219,10 @@
                 UIView *cell = [self cellForIndex:i];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
-                
                 CGRect originCellFrame = CGRectMake(_pageSize.width * i, 0, _pageSize.width, _pageSize.height);
+                //TODO:透明度渐变
+                
                 if (delta < _pageSize.width) {
-//                    cell.alpha = (delta / _pageSize.width) * _minimumPageAlpha;
                     //TODO:把contentEdge改掉
                     CGFloat leftRightInset = self.contentEdge.left * delta / _pageSize.width;
                     CGFloat topBottomInset = self.contentEdge.top * delta / _pageSize.width;
@@ -226,6 +230,7 @@
                     cell.layer.transform = CATransform3DMakeScale((_pageSize.width-leftRightInset*2)/_pageSize.width,(_pageSize.height-topBottomInset*2)/_pageSize.height, 1.0);
                     cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(topBottomInset, leftRightInset, topBottomInset, leftRightInset));
                 } else {
+
                     cell.layer.transform = CATransform3DMakeScale((_pageSize.width-self.contentEdge.left*2)/_pageSize.width,(_pageSize.height-self.contentEdge.top*2)/_pageSize.height, 1.0);
 
                     cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(self.contentEdge.top, self.contentEdge.left, self.contentEdge.bottom, self.contentEdge.right));
@@ -369,14 +374,6 @@
     return _scrollView;
 }
 
-- (UIPageControl *)pageControl {
-    if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] init];
-    }
-    return _pageControl;
-}
-
-
 #pragma scrollView delegate
 
 - (void)scrollToPage:(NSUInteger)pageNumber {
@@ -459,7 +456,10 @@
     }
     [self setVisibleCellsAtContentOffset:scrollView.contentOffset];
     [self refreshView];
-    //TODO:pagecontrol设置当前页
+    
+    if (self.pageControl && [self.pageControl respondsToSelector:@selector(setCurrentPage:)]) {
+        [self.pageControl setCurrentPage:pageIndex];
+    }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didScrollToIndex:inKiraBanner:)] && _currentIndex != pageIndex && pageIndex >= 0) {
         [_delegate didScrollToIndex:pageIndex inKiraBanner:self];
