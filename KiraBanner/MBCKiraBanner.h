@@ -105,5 +105,6 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 
 - (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner;
 - (void)didScrollToIndex:(NSInteger)index inKiraBanner:(MBCKiraBanner *)banner;
+- (void)didSelectCell:(UIView *)cell atIndex:(NSInteger)index;
 
 @end

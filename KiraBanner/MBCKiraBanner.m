@@ -181,6 +181,10 @@
     UIView *cell = [self cellForIndex:index];
     if (!cell) {
         UIView *cell = [self.dataSource kiraBanner:self viewForItemAtIndex:index % self.numberOfItems];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTapped:)];
+        
+        [cell addGestureRecognizer:tap];
+        cell.userInteractionEnabled = YES;
         switch (self.bannerType) {
             case MBCKiraBannerTypeHorizontal: {
                 float originX = index * self.pageSize.width;
@@ -190,7 +194,7 @@
                                         self.pageSize.height);
             }
                 break;
-            case MBCKiraBannerTypeVertical:{
+            case MBCKiraBannerTypeVertical: {
         
             }
                 break;
@@ -293,15 +297,26 @@
     return nil;
 }
 
-//- (UIView *) cellForIndex: (NSInteger)index {
-//    float oringinX = index * _pageSize.width;
-//    for (UIView *cellView in [self cellSubView]) {
-//        if (cellView.frame.origin.x == oringinX) {
-//            return cellView;
-//        }
-//    }
-//    return nil;
-//}
+- (void)cellTapped:(UITapGestureRecognizer *)sender {
+    UIView * cell = sender.view;
+    NSInteger index = -1;
+    NSNumber *value = objc_getAssociatedObject(cell, @selector(cellForIndex:));
+    if (value) {
+        index = value.integerValue % self.numberOfItems;
+    }
+    if ([self.delegate respondsToSelector:@selector(didSelectCell:atIndex:)]) {
+        [self.delegate didSelectCell:cell atIndex:index];
+    }
+}
+- (void) singleTapAction:(NSInteger) index withCell:(UIView *) cell sender:(UITapGestureRecognizer *)sender {
+    NSNumber *value = objc_getAssociatedObject(cell, @selector(cellForIndex:));
+    if (value) {
+        index = value.integerValue;
+    }
+    if ([self.delegate respondsToSelector:@selector(didSelectCell:atIndex:)]) {
+        [self.delegate didSelectCell:cell atIndex:index];
+    }
+}
 
 - (void)recycleCell: (UIView *)cell {
     objc_removeAssociatedObjects(cell);
@@ -340,6 +355,7 @@
     } while (nextResponder != nil);
     return NO;
 }
+
 
 #pragma mark auto play
 - (void)autoPlay {

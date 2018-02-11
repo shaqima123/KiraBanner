@@ -68,6 +68,8 @@
 }
 
 
-
+- (void)didSelectCell:(UIView *)cell atIndex:(NSInteger)index {
+    NSLog(@"%ld",index);
+}
 
 @end
