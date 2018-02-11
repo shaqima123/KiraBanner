@@ -55,7 +55,8 @@
     self.clipsToBounds = YES;
     self.pageCount = 0;
     self.isAutoScroll = YES;
-    self.contentEdge = UIEdgeInsetsMake(30, 20, 30, 20);
+    self.leftRightSpace = 20;
+    self.topBottomSpace = 30;
     _currentIndex = 0;
     _minimumPageAlpha = 1.0;
     _autoTime = 5.0;
@@ -101,7 +102,8 @@
             }
         }
         //重置page的宽度
-        CGFloat width = _scrollView.bounds.size.width - 2 * self.contentEdge.left - 2 * self.contentEdge.right;
+        CGFloat width = _scrollView.bounds.size.width - 4 * self.leftRightSpace;
+        
         _pageSize = CGSizeMake(width, width * 9 / 16);
         if (self.delegate && [self.delegate respondsToSelector:@selector(sizeForPageInKiraBanner:)]) {
            _pageSize = [self.delegate sizeForPageInKiraBanner:self];
@@ -148,7 +150,6 @@
     CGPoint endPoint = CGPointMake(startPoint.x + self.bounds.size.width, startPoint.y + self.bounds.size.height);
     switch (self.bannerType) {
         case MBCKiraBannerTypeHorizontal: {
-            //There is a problem
             for (UIView *cellView in [self cellSubView]) {
                 if (cellView.frame.origin.x + cellView.frame.size.width < startPoint.x) {
                     [self recycleCell:cellView];
@@ -185,11 +186,12 @@
         
         [cell addGestureRecognizer:tap];
         cell.userInteractionEnabled = YES;
+        cell.clipsToBounds = YES;
         switch (self.bannerType) {
             case MBCKiraBannerTypeHorizontal: {
                 float originX = index * self.pageSize.width;
                 cell.frame = CGRectMake(originX,
-                                        self.contentEdge.top,
+                                        self.topBottomSpace,
                                         self.pageSize.width,
                                         self.pageSize.height);
             }
@@ -224,17 +226,20 @@
                 //TODO:透明度渐变
                 
                 if (delta < _pageSize.width) {
-                    //TODO:把contentEdge改掉
-                    CGFloat leftRightInset = self.contentEdge.left * delta / _pageSize.width;
-                    CGFloat topBottomInset = self.contentEdge.top * delta / _pageSize.width;
+
+                    CGFloat leftRightInset = self.leftRightSpace * delta / _pageSize.width;
+                    CGFloat topBottomInset = self.topBottomSpace * delta / _pageSize.width;
 
                     cell.layer.transform = CATransform3DMakeScale((_pageSize.width-leftRightInset*2)/_pageSize.width,(_pageSize.height-topBottomInset*2)/_pageSize.height, 1.0);
                     cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(topBottomInset, leftRightInset, topBottomInset, leftRightInset));
                 } else {
 
-                    cell.layer.transform = CATransform3DMakeScale((_pageSize.width-self.contentEdge.left*2)/_pageSize.width,(_pageSize.height-self.contentEdge.top*2)/_pageSize.height, 1.0);
+                    cell.layer.transform = CATransform3DMakeScale((_pageSize.width-self.leftRightSpace * 2)/_pageSize.width,(_pageSize.height-self.topBottomSpace * 2)/_pageSize.height, 1.0);
 
-                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(self.contentEdge.top, self.contentEdge.left, self.contentEdge.bottom, self.contentEdge.right));
+                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(self.topBottomSpace,
+                                                                                         self.leftRightSpace,
+                                                                                         self.topBottomSpace,
+                                                                                         self.leftRightSpace));
                 }
             }
         }
@@ -376,8 +381,12 @@
 
 #pragma mark get-set
 
-- (void)setContentEdge:(UIEdgeInsets)contentEdge {
-    _contentEdge = UIEdgeInsetsMake(contentEdge.top * 0.5, contentEdge.left * 0.5, contentEdge.bottom * 0.5, contentEdge.right * 0.5);
+- (void)setLeftRightSpace:(CGFloat)leftRightSpace {
+    _leftRightSpace = leftRightSpace * 0.5;
+}
+
+- (void)setTopBottomSpace:(CGFloat)topBottomSpace {
+    _topBottomSpace = topBottomSpace * 0.5;
 }
 
 - (UIScrollView *)scrollView {

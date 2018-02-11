@@ -25,7 +25,7 @@
     self.dataArray = @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg"];
     self.banner = [[MBCKiraBanner alloc] initWithFrame:CGRectMake(0, 72, Width, Width * 9 / 16)];
     [self.view addSubview:self.banner];
-    self.banner.backgroundColor = [UIColor yellowColor];
+    self.banner.backgroundColor = [UIColor blackColor];
     self.banner.isCircle = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.banner regiseterClassForCells:[UIImageView class]];
@@ -56,6 +56,7 @@
     UIImageView *cell = (UIImageView *)[self.banner dequeueReusableCell];
 //    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.dataArray [index]];
     cell.image = [UIImage imageNamed:self.dataArray[index]];
+    [cell setContentMode:UIViewContentModeScaleAspectFill];
     return cell;
 }
 
@@ -69,7 +70,7 @@
 
 
 - (void)didSelectCell:(UIView *)cell atIndex:(NSInteger)index {
-    NSLog(@"%ld",index);
+    NSLog(@"点击了第%ld张图",index);
 }
 
 @end

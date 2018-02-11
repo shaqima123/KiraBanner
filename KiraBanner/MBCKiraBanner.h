@@ -50,8 +50,9 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 ////itemHeight通过scrollview的height减去contentTop和bottom得到
 //
 //@property (nonatomic, assign) CGFloat itemSpace;
-@property (nonatomic, assign) UIEdgeInsets contentEdge;
 
+@property (nonatomic, assign) CGFloat leftRightSpace;
+@property (nonatomic, assign) CGFloat topBottomSpace;
 
 //代理
 @property (nonatomic,weak) id<MBCKiraBannerDataSource> dataSource;
