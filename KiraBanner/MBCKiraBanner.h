@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBCBannerList.h"
 
 typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 {
@@ -106,6 +105,9 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 
 - (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner;
 - (void)didScrollToIndex:(NSInteger)index inKiraBanner:(MBCKiraBanner *)banner;
-- (void)didSelectCell:(UIView *)cell atIndex:(NSInteger)index;
+- (void)didSelectCell:(UIView *)cell inKiraBannerAtIndex:(NSInteger)index;
+
+- (void)didScrollPercent:(float)percent OfPageInScrollView:(UIScrollView *)scrollView;
 
 @end
+

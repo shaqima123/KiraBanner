@@ -70,8 +70,6 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     _currentIndex = 0;
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.backgroundColor = [UIColor redColor];
-    [self.scrollView setFrame:self.bounds];
     [self addSubview:self.scrollView];
 }
 
@@ -106,7 +104,7 @@
         
         _pageSize = CGSizeMake(width, width * 9 / 16);
         if (self.delegate && [self.delegate respondsToSelector:@selector(sizeForPageInKiraBanner:)]) {
-           _pageSize = [self.delegate sizeForPageInKiraBanner:self];
+            _pageSize = [self.delegate sizeForPageInKiraBanner:self];
         }
         
         [_reuseCells removeAllObjects];
@@ -197,7 +195,7 @@
             }
                 break;
             case MBCKiraBannerTypeVertical: {
-        
+                
             }
                 break;
             default:
@@ -226,16 +224,16 @@
                 //TODO:透明度渐变
                 
                 if (delta < _pageSize.width) {
-
+                    
                     CGFloat leftRightInset = self.leftRightSpace * delta / _pageSize.width;
                     CGFloat topBottomInset = self.topBottomSpace * delta / _pageSize.width;
-
+                    
                     cell.layer.transform = CATransform3DMakeScale((_pageSize.width-leftRightInset*2)/_pageSize.width,(_pageSize.height-topBottomInset*2)/_pageSize.height, 1.0);
                     cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(topBottomInset, leftRightInset, topBottomInset, leftRightInset));
                 } else {
-
+                    
                     cell.layer.transform = CATransform3DMakeScale((_pageSize.width-self.leftRightSpace * 2)/_pageSize.width,(_pageSize.height-self.topBottomSpace * 2)/_pageSize.height, 1.0);
-
+                    
                     cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(self.topBottomSpace,
                                                                                          self.leftRightSpace,
                                                                                          self.topBottomSpace,
@@ -258,6 +256,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     //设置子视图的frame
+    [self.scrollView setFrame:self.bounds];
     [self refreshView];
 }
 
@@ -309,17 +308,8 @@
     if (value) {
         index = value.integerValue % self.numberOfItems;
     }
-    if ([self.delegate respondsToSelector:@selector(didSelectCell:atIndex:)]) {
-        [self.delegate didSelectCell:cell atIndex:index];
-    }
-}
-- (void) singleTapAction:(NSInteger) index withCell:(UIView *) cell sender:(UITapGestureRecognizer *)sender {
-    NSNumber *value = objc_getAssociatedObject(cell, @selector(cellForIndex:));
-    if (value) {
-        index = value.integerValue;
-    }
-    if ([self.delegate respondsToSelector:@selector(didSelectCell:atIndex:)]) {
-        [self.delegate didSelectCell:cell atIndex:index];
+    if ([self.delegate respondsToSelector:@selector(didSelectCell:inKiraBannerAtIndex:)]) {
+        [self.delegate didSelectCell:cell inKiraBannerAtIndex:index];
     }
 }
 
@@ -486,6 +476,11 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didScrollToIndex:inKiraBanner:)] && _currentIndex != pageIndex && pageIndex >= 0) {
         [_delegate didScrollToIndex:pageIndex inKiraBanner:self];
     }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didScrollPercent:OfPageInScrollView:)]) {
+        CGFloat offset = _scrollView.contentOffset.x - (int)(_scrollView.contentOffset.x / _pageSize.width) * _pageSize.width;
+        float percent = offset / _pageSize.width;
+        [_delegate didScrollPercent:percent OfPageInScrollView:scrollView];
+    }
     _currentIndex = pageIndex;
 }
 
@@ -524,3 +519,4 @@
 }
 
 @end
+
