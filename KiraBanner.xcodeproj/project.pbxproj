@@ -15,8 +15,6 @@
 		120F6886202825F2002ECE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F6885202825F2002ECE68 /* main.m */; };
 		120F6890202825F2002ECE68 /* KiraBannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F688F202825F2002ECE68 /* KiraBannerTests.m */; };
 		120F689B202825F2002ECE68 /* KiraBannerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F689A202825F2002ECE68 /* KiraBannerUITests.m */; };
-		120F68AA20282A87002ECE68 /* MBCBannerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68A920282A87002ECE68 /* MBCBannerNode.m */; };
-		120F68AD20282EE1002ECE68 /* MBCBannerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68AC20282EE1002ECE68 /* MBCBannerList.m */; };
 		120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68AF2028601D002ECE68 /* MBCKiraBanner.m */; };
 		120F68CC202C20AF002ECE68 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C8202C20AE002ECE68 /* 1.jpg */; };
 		120F68CD202C20AF002ECE68 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C9202C20AE002ECE68 /* 3.jpg */; };
@@ -58,10 +56,6 @@
 		120F6896202825F2002ECE68 /* KiraBannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraBannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		120F689A202825F2002ECE68 /* KiraBannerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KiraBannerUITests.m; sourceTree = "<group>"; };
 		120F689C202825F2002ECE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		120F68A820282A86002ECE68 /* MBCBannerNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCBannerNode.h; sourceTree = "<group>"; };
-		120F68A920282A87002ECE68 /* MBCBannerNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCBannerNode.m; sourceTree = "<group>"; };
-		120F68AB20282EE1002ECE68 /* MBCBannerList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCBannerList.h; sourceTree = "<group>"; };
-		120F68AC20282EE1002ECE68 /* MBCBannerList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCBannerList.m; sourceTree = "<group>"; };
 		120F68AE2028601D002ECE68 /* MBCKiraBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCKiraBanner.h; sourceTree = "<group>"; };
 		120F68AF2028601D002ECE68 /* MBCKiraBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCKiraBanner.m; sourceTree = "<group>"; };
 		120F68C8202C20AE002ECE68 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
@@ -133,10 +127,6 @@
 				120F6881202825F2002ECE68 /* LaunchScreen.storyboard */,
 				120F6884202825F2002ECE68 /* Info.plist */,
 				120F6885202825F2002ECE68 /* main.m */,
-				120F68AB20282EE1002ECE68 /* MBCBannerList.h */,
-				120F68AC20282EE1002ECE68 /* MBCBannerList.m */,
-				120F68A820282A86002ECE68 /* MBCBannerNode.h */,
-				120F68A920282A87002ECE68 /* MBCBannerNode.m */,
 			);
 			path = KiraBanner;
 			sourceTree = "<group>";
@@ -296,11 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120F68AA20282A87002ECE68 /* MBCBannerNode.m in Sources */,
 				120F687B202825F2002ECE68 /* ViewController.m in Sources */,
 				120F6886202825F2002ECE68 /* main.m in Sources */,
 				120F6878202825F2002ECE68 /* AppDelegate.m in Sources */,
-				120F68AD20282EE1002ECE68 /* MBCBannerList.m in Sources */,
 				120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

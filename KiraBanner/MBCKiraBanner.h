@@ -45,11 +45,6 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  */
 @property (nonatomic, assign) BOOL isCircle;
 
-//@property (nonatomic, assign) CGFloat itemWidth;
-////itemHeight通过scrollview的height减去contentTop和bottom得到
-//
-//@property (nonatomic, assign) CGFloat itemSpace;
-
 @property (nonatomic, assign) CGFloat leftRightSpace;
 @property (nonatomic, assign) CGFloat topBottomSpace;
 
