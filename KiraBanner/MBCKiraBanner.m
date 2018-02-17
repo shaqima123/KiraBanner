@@ -21,6 +21,8 @@
 
 @property (nonatomic, assign) CGSize pageSize;
 @property (nonatomic, assign) NSInteger pageCount;
+@property (nonatomic, assign) BOOL needsReload;
+
 @end
 
 @implementation MBCKiraBanner
@@ -55,12 +57,16 @@
     self.clipsToBounds = YES;
     self.pageCount = 0;
     self.isAutoScroll = YES;
+    
+    //默认左右间距为20，上下间距为30
     self.leftRightSpace = 20;
     self.topBottomSpace = 30;
     _currentIndex = 0;
     _minimumPageAlpha = 1.0;
+    
+    //默认自动滚动时间间隔为5s
     _autoTime = 5.0;
-    self.visibleRange = NSMakeRange(0, 0);
+    _visibleRange = NSMakeRange(0, 0);
     self.reuseCells = [[NSMutableSet alloc] init];
     
     self.scrollView.scrollsToTop = NO;
@@ -68,8 +74,10 @@
     self.scrollView.clipsToBounds = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor redColor];
     _currentIndex = 0;
     self.scrollView.pagingEnabled = YES;
+    [self.scrollView setFrame:self.bounds];
     [self addSubview:self.scrollView];
 }
 
@@ -78,27 +86,39 @@
     self.reuseCells = nil;
 }
 
-#pragma mark UI methods
+#pragma mark data methods
 
 - (void)reloadData {
     _needsReload = YES;
-    //TODO: 判断scrollview里面的子view是否符合Class注册类型？？
+    
+    for (UIView *view in self.scrollView.subviews) {
+        if ([NSStringFromClass(view.class) isEqualToString:NSStringFromClass(_cellClass.class)]) {
+            [view removeFromSuperview];
+        }
+    }
+    
     [self stopTimer];
+    
     if (_needsReload) {
         if (self.dataSource && [self.dataSource respondsToSelector:@selector(numberOfItemsInKiraBanner:)]) {
             _numberOfItems = [self.dataSource numberOfItemsInKiraBanner:self];
+            
             if (self.isCircle) {
+                //如果是循环banner，则把scrollView的长度设为3组
                 _pageCount = self.numberOfItems == 1 ? 1 : self.numberOfItems * 3;
             } else {
                 _pageCount = self.numberOfItems == 1 ? 1 : self.numberOfItems;
             }
+            
             if (_pageCount == 0) {
                 return;
             }
+            
             if (self.pageControl && [self.pageControl respondsToSelector:@selector(setNumberOfPages:)]) {
                 [self.pageControl setNumberOfPages:self.numberOfItems];
             }
         }
+        
         //重置page的宽度
         CGFloat width = _scrollView.bounds.size.width - 4 * self.leftRightSpace;
         
@@ -109,7 +129,7 @@
         
         [_reuseCells removeAllObjects];
         _visibleRange = NSMakeRange(0, 0);
-        //TODO:是否需要remove cells？
+        
         switch (self.bannerType) {
             case MBCKiraBannerTypeHorizontal: {
                 [self.scrollView setFrame:CGRectMake(0, 0, _pageSize.width, _pageSize.height)];
@@ -129,7 +149,22 @@
                 
             }
                 break;
-            case MBCKiraBannerTypeVertical:
+            case MBCKiraBannerTypeVertical: {
+                [self.scrollView setFrame:CGRectMake(0, 0, _pageSize.width, _pageSize.height)];
+                [self.scrollView setContentSize:CGSizeMake(0, _pageSize.height * _pageCount)];
+                _scrollView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+                
+                if (self.numberOfItems > 1) {
+                    if (self.isCircle) {
+                        [_scrollView setContentOffset:CGPointMake(_pageSize.height * self.numberOfItems, 0) animated:NO];
+                        self.page = self.numberOfItems;
+                        [self startTimer];
+                    } else {
+                        [_scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+                        self.page = self.numberOfItems;
+                    }
+                }
+            }
                 
                 break;
             default:
@@ -144,10 +179,13 @@
 
 
 - (void)setVisibleCellsAtContentOffset:(CGPoint)offset {
+    
     CGPoint startPoint = CGPointMake(offset.x - _scrollView.frame.origin.x, offset.y - _scrollView.frame.origin.y);
     CGPoint endPoint = CGPointMake(startPoint.x + self.bounds.size.width, startPoint.y + self.bounds.size.height);
+    
     switch (self.bannerType) {
         case MBCKiraBannerTypeHorizontal: {
+            
             for (UIView *cellView in [self cellSubView]) {
                 if (cellView.frame.origin.x + cellView.frame.size.width < startPoint.x) {
                     [self recycleCell:cellView];
@@ -156,11 +194,12 @@
                     [self recycleCell:cellView];
                 }
             }
+            
             NSInteger startIndex = MAX(0, floor(startPoint.x / _pageSize.width));
             NSInteger endIndex = MIN(_pageCount, ceil(endPoint.x / _pageSize.width));
             
-            //TODO:是否需要向前向后扩展一个?
-            self.visibleRange = NSMakeRange(startIndex, endIndex - startIndex + 1);
+            _visibleRange = NSMakeRange(startIndex, endIndex - startIndex + 1);
+        
             for (NSInteger i = startIndex; i < endIndex ; i++) {
                 [self fillPageAtIndex:i];
             }
@@ -168,6 +207,23 @@
             break;
         case MBCKiraBannerTypeVertical: {
             
+            for (UIView *cellView in [self cellSubView]) {
+                if (cellView.frame.origin.y + cellView.frame.size.height < startPoint.y) {
+                    [self recycleCell:cellView];
+                }
+                if (cellView.frame.origin.y > endPoint.y) {
+                    [self recycleCell:cellView];
+                }
+            }
+            
+            NSInteger startIndex = MAX(0, floor(startPoint.y / _pageSize.height));
+            NSInteger endIndex = MIN(_pageCount, ceil(endPoint.y / _pageSize.height));
+            
+            _visibleRange = NSMakeRange(startIndex, endIndex - startIndex + 1);
+            
+            for (NSInteger i = startIndex; i < endIndex ; i++) {
+                [self fillPageAtIndex:i];
+            }
         }
             break;
         default:
@@ -177,7 +233,9 @@
 }
 
 - (void)fillPageAtIndex:(NSInteger)index {
+    
     UIView *cell = [self cellForIndex:index];
+    
     if (!cell) {
         UIView *cell = [self.dataSource kiraBanner:self viewForItemAtIndex:index % self.numberOfItems];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTapped:)];
@@ -195,7 +253,11 @@
             }
                 break;
             case MBCKiraBannerTypeVertical: {
-                
+                float originY = index * self.pageSize.height;
+                cell.frame = CGRectMake(self.leftRightSpace,
+                                        originY,
+                                        self.pageSize.width,
+                                        self.pageSize.height);
             }
                 break;
             default:
@@ -243,7 +305,31 @@
         }
             break;
         case MBCKiraBannerTypeVertical: {
-            
+            CGFloat offset = _scrollView.contentOffset.y;
+            for (NSInteger i = self.visibleRange.location; i < self.visibleRange.location + self.visibleRange.length ; i++) {
+                UIView *cell = [self cellForIndex:i];
+                CGFloat origin = cell.frame.origin.y;
+                CGFloat delta = fabs(origin - offset);
+                CGRect originCellFrame = CGRectMake(0, _pageSize.width * i, _pageSize.width, _pageSize.height);
+                //TODO:透明度渐变
+                
+                if (delta < _pageSize.height) {
+                    
+                    CGFloat leftRightInset = self.leftRightSpace * delta / _pageSize.height;
+                    CGFloat topBottomInset = self.topBottomSpace * delta / _pageSize.height;
+                    
+                    cell.layer.transform = CATransform3DMakeScale((_pageSize.width-leftRightInset*2)/_pageSize.width,(_pageSize.height-topBottomInset*2)/_pageSize.height, 1.0);
+                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(topBottomInset, leftRightInset, topBottomInset, leftRightInset));
+                } else {
+                    
+                    cell.layer.transform = CATransform3DMakeScale((_pageSize.width-self.leftRightSpace * 2)/_pageSize.width,(_pageSize.height-self.topBottomSpace * 2)/_pageSize.height, 1.0);
+                    
+                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(self.topBottomSpace,
+                                                                                         self.leftRightSpace,
+                                                                                         self.topBottomSpace,
+                                                                                         self.leftRightSpace));
+                }
+            }
         }
             break;
             
@@ -252,11 +338,11 @@
     }
 }
 
-//- (UIView *)
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     //设置子视图的frame
-    [self.scrollView setFrame:self.bounds];
+//    [self.scrollView setFrame:self.bounds];
     [self refreshView];
 }
 
@@ -269,13 +355,10 @@
 
 - (UIView *)dequeueReusableCell {
     UIView *cell = [self.reuseCells anyObject];
-    NSLog(@"\nreuseCells:%@\n",self.reuseCells.description);
     if (cell) {
-        NSLog(@"add cell");
         [self.reuseCells removeObject:cell];
     }
     if (!cell) {
-        NSLog(@"new cell");
         cell = [[self.cellClass alloc] init];
     }
     return  cell;
@@ -361,7 +444,7 @@
         }
             break;
         case MBCKiraBannerTypeVertical: {
-            
+             [_scrollView setContentOffset:CGPointMake(0, self.page * _pageSize.height) animated:YES];
         }
             break;
         default:
@@ -428,7 +511,7 @@
         }
             break;
         case MBCKiraBannerTypeVertical:{
-            
+            pageIndex = (int)round(_scrollView.contentOffset.y / _pageSize.height) % self.numberOfItems;
         }
             break;
         default:
@@ -456,7 +539,18 @@
                     break;
                 case MBCKiraBannerTypeVertical:
                 {
+                    if (scrollView.contentOffset.y / _pageSize.height >= 2 * self.numberOfItems) {
+                        
+                        [scrollView setContentOffset:CGPointMake(0, _pageSize.height * self.numberOfItems) animated:NO];
+                        
+                        self.page = self.numberOfItems;
+                    }
                     
+                    if (scrollView.contentOffset.y / _pageSize.height <= self.numberOfItems - 1) {
+                        [scrollView setContentOffset:CGPointMake(0, (2 * self.numberOfItems - 1) * _pageSize.height) animated:NO];
+                        
+                        self.page = 2 * self.numberOfItems - 1;
+                    }
                 }
                     break;
                 default:
@@ -501,7 +595,14 @@
                 break;
             case MBCKiraBannerTypeVertical:
             {
-                
+                if (self.page == floor(_scrollView.contentOffset.y / _pageSize.height)) {
+                    
+                    self.page = floor(_scrollView.contentOffset.y / _pageSize.height) + 1;
+                    
+                }else {
+                    
+                    self.page = floor(_scrollView.contentOffset.y / _pageSize.height);
+                }
             }
                 break;
             default:

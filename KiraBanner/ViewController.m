@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "MBCBannerList.h"
 #import "MBCKiraBanner.h"
 #define Width [UIScreen mainScreen].bounds.size.width
 
@@ -27,23 +26,21 @@
     [self.view addSubview:self.banner];
     self.banner.backgroundColor = [UIColor blackColor];
     self.banner.isCircle = YES;
+    self.banner.leftRightSpace = 50;
+    self.banner.topBottomSpace = 30;
+    self.banner.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.banner regiseterClassForCells:[UIImageView class]];
-//    self.banner.contentEdge = UIEdgeInsetsMake(30, 100, 30, 100);
     self.banner.bannerType = MBCKiraBannerTypeHorizontal;
     self.banner.minimumPageAlpha = 1;
     self.banner.dataSource = self;
     self.banner.delegate = self;
     
-    UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.banner.frame.size.height - 8, Width, 8)];
+    UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.banner.frame.size.height - 15, Width, 8)];
     self.banner.pageControl = pageControl;
     [self.banner addSubview:pageControl];
     [self.banner reloadData];
     // Do any additional setup after loading the view, typically from a nib.
-}
-
--(void)dealloc {
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +51,6 @@
 
 - (UIView *)kiraBanner:(MBCKiraBanner *)banner viewForItemAtIndex:(NSInteger)index {
     UIImageView *cell = (UIImageView *)[self.banner dequeueReusableCell];
-//    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.dataArray [index]];
     cell.image = [UIImage imageNamed:self.dataArray[index]];
     [cell setContentMode:UIViewContentModeScaleAspectFill];
     return cell;
@@ -68,9 +64,8 @@
     return self.dataArray.count;
 }
 
-
-- (void)didSelectCell:(UIView *)cell atIndex:(NSInteger)index {
-    NSLog(@"点击了第%ld张图",index);
+- (void)didSelectCell:(UIView *)cell inKiraBannerAtIndex:(NSInteger)index {
+    NSLog(@"banner of index : %ld is clicked.",(long)index);
 }
 
 @end

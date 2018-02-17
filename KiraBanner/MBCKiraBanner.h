@@ -10,8 +10,8 @@
 
 typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 {
-    MBCKiraBannerTypeHorizontal = 0,
-    MBCKiraBannerTypeVertical
+    MBCKiraBannerTypeHorizontal = 0,//水平方向
+    MBCKiraBannerTypeVertical//竖直方向
 };
 
 @protocol MBCKiraBannerDataSource,MBCKiraBannerDelegate;
@@ -24,16 +24,21 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  *  当前是第几页
  */
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
-@property (nonatomic, strong) Class cellClass;
 
-@property (nonatomic, assign) BOOL needsReload;
+/**
+ *  注册的cell类型
+ */
+@property (nonatomic, strong) Class cellClass;
 
 /**
  *  总页数
  */
 @property (nonatomic, assign, readonly) NSInteger numberOfItems;
 
-@property (nonatomic, assign) NSRange visibleRange;
+/**
+ *  可见的页数范围
+ */
+@property (nonatomic, assign, readonly) NSRange visibleRange;
 
 /**
  *  非当前页的透明比例
@@ -45,10 +50,13 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  */
 @property (nonatomic, assign) BOOL isCircle;
 
+/**
+ *  左右上下间距
+ */
 @property (nonatomic, assign) CGFloat leftRightSpace;
 @property (nonatomic, assign) CGFloat topBottomSpace;
 
-//代理
+//数据源和方法代理
 @property (nonatomic,weak) id<MBCKiraBannerDataSource> dataSource;
 @property (nonatomic,weak) id<MBCKiraBannerDelegate> delegate;
 
@@ -73,9 +81,12 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  */
 @property (nonatomic, assign) CGFloat autoTime;
 
-//Cell
+/**
+ *  Cell有关方法，注册、重用
+ */
 - (void)regiseterClassForCells: (Class) cellClass;
 - (UIView *)dequeueReusableCell;
+
 - (void)reloadData;
 - (void)scrollToPage:(NSUInteger)pageNumber;
 
@@ -83,13 +94,21 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
  *  关闭定时器,关闭自动滚动
  */
 - (void)stopTimer;
+
 - (void)adjustCenterSubview;
 
 @end
 
 @protocol MBCKiraBannerDataSource <NSObject>
 @required
+/**
+ *  设置banner的数量
+ */
 - (NSInteger)numberOfItemsInKiraBanner:(MBCKiraBanner *)banner;
+
+/**
+ *  设置某一页banner的内容
+ */
 - (UIView *)kiraBanner: (MBCKiraBanner *)banner viewForItemAtIndex:(NSInteger)index;
 
 @optional
@@ -98,10 +117,24 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 
 @protocol MBCKiraBannerDelegate <UIScrollViewDelegate>
 
+/**
+ *  设置一个page的size
+ */
 - (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner;
+
+/**
+ *  当前banner滚动到了哪一页
+ */
 - (void)didScrollToIndex:(NSInteger)index inKiraBanner:(MBCKiraBanner *)banner;
+
+/**
+ *  点击某个cell
+ */
 - (void)didSelectCell:(UIView *)cell inKiraBannerAtIndex:(NSInteger)index;
 
+/**
+ *  当前page滚动过了整页的百分比
+ */
 - (void)didScrollPercent:(float)percent OfPageInScrollView:(UIScrollView *)scrollView;
 
 @end
