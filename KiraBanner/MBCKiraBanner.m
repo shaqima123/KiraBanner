@@ -77,6 +77,7 @@
     self.scrollView.backgroundColor = [UIColor redColor];
     _currentIndex = 0;
     self.scrollView.pagingEnabled = YES;
+    //scrollView设置frame的时机？如果是外部使用masonry则会导致scrollview的frame没有刷新产生异常
     [self.scrollView setFrame:self.bounds];
     [self addSubview:self.scrollView];
 }
