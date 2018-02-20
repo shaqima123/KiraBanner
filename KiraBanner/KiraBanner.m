@@ -1,15 +1,15 @@
 //
-//  MBCKiraBanner.m
+//  KiraBanner.m
 //  KiraBanner
 //
 //  Created by zj－db0737 on 2018/2/5.
 //  Copyright © 2018年 zj－db0737. All rights reserved.
 //
 
-#import "MBCKiraBanner.h"
+#import "KiraBanner.h"
 #import <objc/runtime.h>
 
-@interface MBCKiraBanner () <UIScrollViewDelegate>
+@interface KiraBanner () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableSet *reuseCells;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation MBCKiraBanner
+@implementation KiraBanner
 
 #pragma mark init methods
 
@@ -137,7 +137,7 @@
         _visibleRange = NSMakeRange(0, 0);
         
         switch (self.bannerType) {
-            case MBCKiraBannerTypeHorizontal: {
+            case KiraBannerTypeHorizontal: {
                 [self.scrollView setFrame:CGRectMake(0, 0, _pageSize.width, _pageSize.height)];
                 [self.scrollView setContentSize:CGSizeMake(_pageSize.width * _pageCount, 0)];
                 _scrollView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
@@ -155,7 +155,7 @@
                 
             }
                 break;
-            case MBCKiraBannerTypeVertical: {
+            case KiraBannerTypeVertical: {
                 [self.scrollView setFrame:CGRectMake(0, 0, _pageSize.width, _pageSize.height)];
                 [self.scrollView setContentSize:CGSizeMake(0, _pageSize.height * _pageCount)];
                 _scrollView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
@@ -190,7 +190,7 @@
     CGPoint endPoint = CGPointMake(startPoint.x + self.bounds.size.width, startPoint.y + self.bounds.size.height);
     
     switch (self.bannerType) {
-        case MBCKiraBannerTypeHorizontal: {
+        case KiraBannerTypeHorizontal: {
             
             for (UIView *cellView in [self cellSubView]) {
                 if (cellView.frame.origin.x + cellView.frame.size.width < startPoint.x) {
@@ -211,7 +211,7 @@
             }
         }
             break;
-        case MBCKiraBannerTypeVertical: {
+        case KiraBannerTypeVertical: {
             
             for (UIView *cellView in [self cellSubView]) {
                 if (cellView.frame.origin.y + cellView.frame.size.height < startPoint.y) {
@@ -250,7 +250,7 @@
         cell.userInteractionEnabled = YES;
         cell.clipsToBounds = YES;
         switch (self.bannerType) {
-            case MBCKiraBannerTypeHorizontal: {
+            case KiraBannerTypeHorizontal: {
                 float originX = index * self.pageSize.width;
                 cell.frame = CGRectMake(originX,
                                         self.topBottomSpace,
@@ -258,7 +258,7 @@
                                         self.pageSize.height);
             }
                 break;
-            case MBCKiraBannerTypeVertical: {
+            case KiraBannerTypeVertical: {
                 float originY = index * self.pageSize.height;
                 cell.frame = CGRectMake(self.leftRightSpace,
                                         originY,
@@ -282,7 +282,7 @@
         return;
     }
     switch (self.bannerType) {
-        case MBCKiraBannerTypeHorizontal: {
+        case KiraBannerTypeHorizontal: {
             CGFloat offset = _scrollView.contentOffset.x;
             for (NSInteger i = self.visibleRange.location; i < self.visibleRange.location + self.visibleRange.length ; i++) {
                 UIView *cell = [self cellForIndex:i];
@@ -310,7 +310,7 @@
             }
         }
             break;
-        case MBCKiraBannerTypeVertical: {
+        case KiraBannerTypeVertical: {
             CGFloat offset = _scrollView.contentOffset.y;
             for (NSInteger i = self.visibleRange.location; i < self.visibleRange.location + self.visibleRange.length ; i++) {
                 UIView *cell = [self cellForIndex:i];
@@ -447,11 +447,11 @@
 - (void)autoPlay {
     self.page ++;
     switch (self.bannerType) {
-        case MBCKiraBannerTypeHorizontal: {
+        case KiraBannerTypeHorizontal: {
             [_scrollView setContentOffset:CGPointMake(self.page * _pageSize.width, 0) animated:YES];
         }
             break;
-        case MBCKiraBannerTypeVertical: {
+        case KiraBannerTypeVertical: {
              [_scrollView setContentOffset:CGPointMake(0, self.page * _pageSize.height) animated:YES];
         }
             break;
@@ -496,10 +496,10 @@
         }
         
         switch (self.bannerType) {
-            case MBCKiraBannerTypeHorizontal:
+            case KiraBannerTypeHorizontal:
                 [_scrollView setContentOffset:CGPointMake(_pageSize.width * self.page, 0) animated:YES];
                 break;
-            case MBCKiraBannerTypeVertical:
+            case KiraBannerTypeVertical:
                 [_scrollView setContentOffset:CGPointMake(0, _pageSize.height * self.page) animated:YES];
                 break;
         }
@@ -514,11 +514,11 @@
     }
     NSInteger pageIndex = 0;
     switch (self.bannerType) {
-        case MBCKiraBannerTypeHorizontal:{
+        case KiraBannerTypeHorizontal:{
             pageIndex = (int)round(_scrollView.contentOffset.x / _pageSize.width) % self.numberOfItems;
         }
             break;
-        case MBCKiraBannerTypeVertical:{
+        case KiraBannerTypeVertical:{
             pageIndex = (int)round(_scrollView.contentOffset.y / _pageSize.height) % self.numberOfItems;
         }
             break;
@@ -529,7 +529,7 @@
     if (self.isCircle) {
         if (self.numberOfItems > 1) {
             switch (self.bannerType) {
-                case MBCKiraBannerTypeHorizontal:
+                case KiraBannerTypeHorizontal:
                 {
                     if (scrollView.contentOffset.x / _pageSize.width >= 2 * self.numberOfItems) {
                         
@@ -545,7 +545,7 @@
                     }
                 }
                     break;
-                case MBCKiraBannerTypeVertical:
+                case KiraBannerTypeVertical:
                 {
                     if (scrollView.contentOffset.y / _pageSize.height >= 2 * self.numberOfItems) {
                         
@@ -589,7 +589,7 @@
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     if (self.numberOfItems > 1 && self.isAutoScroll && self.isCircle) {
         switch (self.bannerType) {
-            case MBCKiraBannerTypeHorizontal:
+            case KiraBannerTypeHorizontal:
             {
                 if (self.page == floor(_scrollView.contentOffset.x / _pageSize.width)) {
                     
@@ -601,7 +601,7 @@
                 }
             }
                 break;
-            case MBCKiraBannerTypeVertical:
+            case KiraBannerTypeVertical:
             {
                 if (self.page == floor(_scrollView.contentOffset.y / _pageSize.height)) {
                     

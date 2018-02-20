@@ -1,5 +1,5 @@
 //
-//  MBCKiraBanner.h
+//  KiraBanner.h
 //  KiraBanner
 //
 //  Created by zj－db0737 on 2018/2/5.
@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, MBCKiraBannerType)
+typedef NS_ENUM(NSInteger, KiraBannerType)
 {
-    MBCKiraBannerTypeHorizontal = 0,//水平方向
-    MBCKiraBannerTypeVertical//竖直方向
+    KiraBannerTypeHorizontal = 0,//水平方向
+    KiraBannerTypeVertical//竖直方向
 };
 
-@protocol MBCKiraBannerDataSource,MBCKiraBannerDelegate;
-@interface MBCKiraBanner : UIView
+@protocol KiraBannerDataSource,KiraBannerDelegate;
+@interface KiraBanner : UIView
 
 //数据源相关
-@property (nonatomic, assign) MBCKiraBannerType bannerType;
+@property (nonatomic, assign) KiraBannerType bannerType;
 
 /**
  *  当前是第几页
@@ -52,8 +52,8 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 @property (nonatomic, assign) CGFloat topBottomSpace;
 
 //数据源和方法代理
-@property (nonatomic,weak) id<MBCKiraBannerDataSource> dataSource;
-@property (nonatomic,weak) id<MBCKiraBannerDelegate> delegate;
+@property (nonatomic,weak) id<KiraBannerDataSource> dataSource;
+@property (nonatomic,weak) id<KiraBannerDelegate> delegate;
 
 /**
  *  指示器
@@ -94,33 +94,33 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 
 @end
 
-@protocol MBCKiraBannerDataSource <NSObject>
+@protocol KiraBannerDataSource <NSObject>
 @required
 /**
  *  设置banner的数量
  */
-- (NSInteger)numberOfItemsInKiraBanner:(MBCKiraBanner *)banner;
+- (NSInteger)numberOfItemsInKiraBanner:(KiraBanner *)banner;
 
 /**
  *  设置某一页banner的内容
  */
-- (UIView *)kiraBanner: (MBCKiraBanner *)banner viewForItemAtIndex:(NSInteger)index;
+- (UIView *)kiraBanner: (KiraBanner *)banner viewForItemAtIndex:(NSInteger)index;
 
 @optional
 
 @end
 
-@protocol MBCKiraBannerDelegate <UIScrollViewDelegate>
+@protocol KiraBannerDelegate <UIScrollViewDelegate>
 
 /**
  *  设置一个page的size
  */
-- (CGSize)sizeForPageInKiraBanner:(MBCKiraBanner *)banner;
+- (CGSize)sizeForPageInKiraBanner:(KiraBanner *)banner;
 
 /**
  *  当前banner滚动到了哪一页
  */
-- (void)didScrollToIndex:(NSInteger)index inKiraBanner:(MBCKiraBanner *)banner;
+- (void)didScrollToIndex:(NSInteger)index inKiraBanner:(KiraBanner *)banner;
 
 /**
  *  点击某个cell

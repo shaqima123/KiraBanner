@@ -15,11 +15,11 @@
 		120F6886202825F2002ECE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F6885202825F2002ECE68 /* main.m */; };
 		120F6890202825F2002ECE68 /* KiraBannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F688F202825F2002ECE68 /* KiraBannerTests.m */; };
 		120F689B202825F2002ECE68 /* KiraBannerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F689A202825F2002ECE68 /* KiraBannerUITests.m */; };
-		120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 120F68AF2028601D002ECE68 /* MBCKiraBanner.m */; };
 		120F68CC202C20AF002ECE68 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C8202C20AE002ECE68 /* 1.jpg */; };
 		120F68CD202C20AF002ECE68 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68C9202C20AE002ECE68 /* 3.jpg */; };
 		120F68CE202C20AF002ECE68 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68CA202C20AE002ECE68 /* 4.jpg */; };
 		120F68CF202C20AF002ECE68 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 120F68CB202C20AF002ECE68 /* 2.jpg */; };
+		122B78A5203C495100F06642 /* KiraBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 122B78A3203C495100F06642 /* KiraBanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +56,12 @@
 		120F6896202825F2002ECE68 /* KiraBannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraBannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		120F689A202825F2002ECE68 /* KiraBannerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KiraBannerUITests.m; sourceTree = "<group>"; };
 		120F689C202825F2002ECE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		120F68AE2028601D002ECE68 /* MBCKiraBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCKiraBanner.h; sourceTree = "<group>"; };
-		120F68AF2028601D002ECE68 /* MBCKiraBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCKiraBanner.m; sourceTree = "<group>"; };
 		120F68C8202C20AE002ECE68 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		120F68C9202C20AE002ECE68 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		120F68CA202C20AE002ECE68 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		120F68CB202C20AF002ECE68 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		122B78A3203C495100F06642 /* KiraBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KiraBanner.m; sourceTree = "<group>"; };
+		122B78A4203C495100F06642 /* KiraBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiraBanner.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 				120F6877202825F2002ECE68 /* AppDelegate.m */,
 				120F6879202825F2002ECE68 /* ViewController.h */,
 				120F687A202825F2002ECE68 /* ViewController.m */,
-				120F68AE2028601D002ECE68 /* MBCKiraBanner.h */,
-				120F68AF2028601D002ECE68 /* MBCKiraBanner.m */,
+				122B78A4203C495100F06642 /* KiraBanner.h */,
+				122B78A3203C495100F06642 /* KiraBanner.m */,
 				120F687C202825F2002ECE68 /* Main.storyboard */,
 				120F687F202825F2002ECE68 /* Assets.xcassets */,
 				120F6881202825F2002ECE68 /* LaunchScreen.storyboard */,
@@ -286,10 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				122B78A5203C495100F06642 /* KiraBanner.m in Sources */,
 				120F687B202825F2002ECE68 /* ViewController.m in Sources */,
 				120F6886202825F2002ECE68 /* main.m in Sources */,
 				120F6878202825F2002ECE68 /* AppDelegate.m in Sources */,
-				120F68B02028601D002ECE68 /* MBCKiraBanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
