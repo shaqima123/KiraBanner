@@ -15,6 +15,11 @@
 @property (nonatomic, strong) NSMutableSet *reuseCells;
 
 /**
+ *  注册的cell类型
+ */
+@property (nonatomic, strong) Class cellClass;
+
+/**
  *  计时器用到的页数
  */
 @property (nonatomic, assign) NSInteger page;
@@ -358,9 +363,11 @@
     UIView *cell = [self.reuseCells anyObject];
     if (cell) {
         [self.reuseCells removeObject:cell];
+        NSLog(@"add cell");
     }
     if (!cell) {
         cell = [[self.cellClass alloc] init];
+        NSLog(@"new cell");
     }
     return  cell;
 }

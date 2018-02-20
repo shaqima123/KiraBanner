@@ -26,11 +26,6 @@ typedef NS_ENUM(NSInteger, MBCKiraBannerType)
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
 
 /**
- *  注册的cell类型
- */
-@property (nonatomic, strong) Class cellClass;
-
-/**
  *  总页数
  */
 @property (nonatomic, assign, readonly) NSInteger numberOfItems;
